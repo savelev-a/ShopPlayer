@@ -433,6 +433,10 @@ QToolButton::menu-indicator { image: none; }</string>
    </property>
   </action>
   <action name="loadAllAction">
+   <property name="icon">
+    <iconset resource="../../res.qrc">
+     <normaloff>:/res/img/16x16/download.png</normaloff>:/res/img/16x16/download.png</iconset>
+   </property>
    <property name="text">
     <string>Загрузить всё с сервера</string>
    </property>
@@ -448,7 +452,10 @@ QToolButton::menu-indicator { image: none; }</string>
      <normaloff>:/res/img/16x16/skip-backward.png</normaloff>:/res/img/16x16/skip-backward.png</iconset>
    </property>
    <property name="text">
-    <string>В начало</string>
+    <string>Предыдущий</string>
+   </property>
+   <property name="toolTip">
+    <string>Предыдущий</string>
    </property>
   </action>
   <action name="backwardAction">
@@ -457,7 +464,7 @@ QToolButton::menu-indicator { image: none; }</string>
      <normaloff>:/res/img/16x16/backward.png</normaloff>:/res/img/16x16/backward.png</iconset>
    </property>
    <property name="text">
-    <string>Назад</string>
+    <string>Назад 5 сек</string>
    </property>
   </action>
   <action name="playAction">
@@ -493,7 +500,10 @@ QToolButton::menu-indicator { image: none; }</string>
      <normaloff>:/res/img/16x16/forward.png</normaloff>:/res/img/16x16/forward.png</iconset>
    </property>
    <property name="text">
-    <string>Вперед</string>
+    <string>Вперед 5 сек</string>
+   </property>
+   <property name="toolTip">
+    <string>Вперед 5 сек</string>
    </property>
   </action>
   <action name="sForwardAction">
@@ -502,7 +512,10 @@ QToolButton::menu-indicator { image: none; }</string>
      <normaloff>:/res/img/16x16/skip-forward.png</normaloff>:/res/img/16x16/skip-forward.png</iconset>
    </property>
    <property name="text">
-    <string>В конец</string>
+    <string>Следующий</string>
+   </property>
+   <property name="toolTip">
+    <string>Следующий</string>
    </property>
   </action>
   <action name="parseLocalFileAction">

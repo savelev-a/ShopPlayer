@@ -19,6 +19,15 @@ MainWindow::MainWindow(QWidget *parent) :
     showWindowAction = new QAction("Открыть плеер", this);
 
     trayMenu->addAction(showWindowAction);
+    trayMenu->addAction(ui->loadAllAction);
+    trayMenu->addSeparator();
+    trayMenu->addAction(ui->sBackwardAction);
+    trayMenu->addAction(ui->backwardAction);
+    trayMenu->addAction(ui->playAction);
+    trayMenu->addAction(ui->pauseAction);
+    trayMenu->addAction(ui->stopAction);
+    trayMenu->addAction(ui->forwardAction);
+    trayMenu->addAction(ui->sForwardAction);
     trayMenu->addSeparator();
     trayMenu->addAction(ui->exitAction);
 
@@ -30,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     MediaPlayer *mplayer = Application::getInstance()->mediaPlayer;
     PlaylistModel *model = Application::getInstance()->playlistModel;
+    NetworkClient *netClient = Application::getInstance()->networkClient;
 
     connect(model, SIGNAL(loadComplete(QList<AudioClip>)), mplayer, SLOT(loadPlaylist(QList<AudioClip>)));
     connect(model, SIGNAL(loadComplete(QList<AudioClip>)), this, SLOT(updatePlaylistTable()));
@@ -42,10 +52,8 @@ MainWindow::MainWindow(QWidget *parent) :
                 this, SLOT(showWindowByTrayActivation(QSystemTrayIcon::ActivationReason)));
 
     connect(ui->settingsAction, SIGNAL(triggered(bool)), this, SLOT(showSettings()));
-    connect(ui->loadAllAction, SIGNAL(triggered(bool)),
-            Application::getInstance()->networkClient, SLOT(checkAndDownloadData()));
-    connect(ui->parseLocalFileAction, SIGNAL(triggered(bool)),
-            Application::getInstance()->playlistModel, SLOT(loadFromJson()));
+    connect(ui->loadAllAction, SIGNAL(triggered(bool)), netClient, SLOT(checkAndDownloadData()));
+    connect(ui->parseLocalFileAction, SIGNAL(triggered(bool)), model, SLOT(loadFromJson()));
 
     connect(ui->mediaPlayButton, SIGNAL(clicked(bool)), mplayer, SLOT(play()));
     connect(ui->mediaStopButton, SIGNAL(clicked(bool)), mplayer, SLOT(stop()));
@@ -71,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent) :
     trayIcon->show();
     //setVisible(true);
 
-    QTimer::singleShot(1000, Application::getInstance()->networkClient, SLOT(checkAndDownloadData()));
+    QTimer::singleShot(1000, netClient, SLOT(checkAndDownloadData()));
 
 }
 
@@ -150,8 +158,7 @@ void MainWindow::hideDownloadProgress()
 void MainWindow::updatePlaylistTable()
 {
     ui->localPlaylistTable->setModel(Application::getInstance()->playlistModel);
-    //ui->localPlaylistTable->resizeColumnsToContents();
     ui->localPlaylistTable->setColumnHidden(1, true);
     ui->localPlaylistTable->horizontalHeader()->stretchLastSection();
-
+    ui->localPlaylistTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
 }
