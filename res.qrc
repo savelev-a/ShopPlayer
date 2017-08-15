@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>img/16x16/appicon.png</file>
+        <file>img/16x16/application-exit.png</file>
+        <file>img/16x16/backward.png</file>
+        <file>img/16x16/eject.png</file>
+        <file>img/16x16/forward.png</file>
+        <file>img/16x16/pause.png</file>
+        <file>img/16x16/play.png</file>
+        <file>img/16x16/record.png</file>
+        <file>img/16x16/refresh.png</file>
+        <file>img/16x16/skip-backward.png</file>
+        <file>img/16x16/skip-forward.png</file>
+        <file>img/16x16/stop.png</file>
+        <file>img/32x32/backward.png</file>
+        <file>img/32x32/eject.png</file>
+        <file>img/32x32/forward.png</file>
+        <file>img/32x32/pause.png</file>
+        <file>img/32x32/record.png</file>
+        <file>img/32x32/skip-backward.png</file>
+        <file>img/32x32/skip-forward.png</file>
+        <file>img/32x32/start.png</file>
+        <file>img/32x32/stop.png</file>
+        <file>img/32x32/volume-high.png</file>
+        <file>img/32x32/volume-low.png</file>
+        <file>img/32x32/volume-medium.png</file>
+        <file>img/32x32/volume-muted.png</file>
+        <file>img/16x16/settings-cancel.png</file>
+        <file>img/16x16/settings-save.png</file>
+    </qresource>
+</RCC>
