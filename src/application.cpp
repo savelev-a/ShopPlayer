@@ -22,8 +22,7 @@ void Application::init()
     networkClient = new NetworkClient(this);
     mainWindow = new MainWindow();
 
-    //refreshTimer = new QTimer(this);
-    //refreshTimer->setInterval(this->settings->value("periodCheck", 30).toInt() * 1000);
+    QTimer::singleShot(1000, networkClient, SLOT(checkAndDownloadData()));
 
 
 

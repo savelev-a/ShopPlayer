@@ -77,9 +77,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->localPlaylistTable, SIGNAL(clicked(QModelIndex)), mplayer, SLOT(playSelectedTrack(QModelIndex)));
 
     trayIcon->show();
-    //setVisible(true);
-
-    QTimer::singleShot(1000, netClient, SLOT(checkAndDownloadData()));
 
 }
 

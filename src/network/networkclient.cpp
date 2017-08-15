@@ -6,12 +6,18 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QTextCodec>
+#include <QDir>
 
 #include "../application.h"
 
 NetworkClient::NetworkClient(QObject *parent) : QObject(parent)
 {
     manager = new QNetworkAccessManager(this);
+    if(!QDir("local").exists())
+    {
+        qDebug() << "Создание каталогов..";
+        QDir().mkdir("local");
+    }
 }
 
 
