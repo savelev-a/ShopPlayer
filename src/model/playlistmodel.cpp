@@ -116,6 +116,7 @@ QVariant PlaylistModel::headerData(int section, Qt::Orientation orientation, int
 void PlaylistModel::loadFromJson()
 {
     QString shopname = Application::getInstance()->settings->value("shopname").toString();
+    int noReklamaPos = Application::getInstance()->settings->value("noreklama", 1).toInt();
 
     QList<AudioClip> musicList;
     QList<AudioClip> reklamaList;
@@ -131,7 +132,7 @@ void PlaylistModel::loadFromJson()
         {
             QJsonObject shop = shopVal.toObject();
             //qDebug() << shop.value("shopname").toString() << shopname;
-            if(shop.value("shopname").toString() == shopname)
+            if(shop.value("shopname").toString() == shopname || shop.value("shopname").toString() == "ALL")
             {
                 QJsonArray contentArray = shop.value("content").toArray();
                 for(QJsonValue clipVal : contentArray)
@@ -159,15 +160,20 @@ void PlaylistModel::loadFromJson()
         }
 
         int currentReklamaPos = 0;
+        int noReklamaPosCounter = 1;
         for(AudioClip musicClip : musicList)
         {
             clipList.append(musicClip);
-            if(!reklamaList.isEmpty() && currentReklamaPos <= reklamaList.size() - 1)
+            if(!reklamaList.isEmpty()
+                    && currentReklamaPos <= reklamaList.size() - 1
+                    && noReklamaPosCounter >= noReklamaPos)
             {
                 clipList.append(reklamaList.at(currentReklamaPos));
+                noReklamaPosCounter = 0;
             }
 
             currentReklamaPos++;
+            noReklamaPosCounter++;
             if(currentReklamaPos > reklamaList.size() - 1) currentReklamaPos = 0;
         }
 

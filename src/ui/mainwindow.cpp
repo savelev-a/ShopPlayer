@@ -158,4 +158,6 @@ void MainWindow::updatePlaylistTable()
     ui->localPlaylistTable->setColumnHidden(1, true);
     ui->localPlaylistTable->horizontalHeader()->stretchLastSection();
     ui->localPlaylistTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+
+    ui->localPlaylistTable->reset();
 }

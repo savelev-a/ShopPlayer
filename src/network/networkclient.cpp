@@ -116,7 +116,7 @@ void NetworkClient::parseContentJson()
         for(QJsonValue shopVal : shopsArray)
         {
             QJsonObject shop = shopVal.toObject();
-            if(shop.value("shopname").toString() == shopname)
+            if(shop.value("shopname").toString() == shopname || shop.value("shopname").toString() == "ALL")
             {
                 QJsonArray contentArray = shop.value("content").toArray();
                 for(QJsonValue clipVal : contentArray)
