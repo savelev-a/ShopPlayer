@@ -18,6 +18,8 @@ NetworkClient::NetworkClient(QObject *parent) : QObject(parent)
         qDebug() << "Создание каталогов..";
         QDir().mkdir("local");
     }
+
+    connect(this, SIGNAL(downloadComplete()), Application::getInstance()->playlistModel, SLOT(loadFromJson()));
 }
 
 
@@ -50,7 +52,7 @@ void NetworkClient::downloadFile(const QString &filename)
     connect(currentReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(showError(QNetworkReply::NetworkError)));
     connect(currentReply, SIGNAL(downloadProgress(qint64,qint64)),
             Application::getInstance()->mainWindow, SLOT(showDownloadProgress(qint64,qint64)));
-    connect(this, SIGNAL(downloadComplete()), Application::getInstance()->playlistModel, SLOT(loadFromJson()));
+
 }
 
 void NetworkClient::downloadBytesAvaible()
